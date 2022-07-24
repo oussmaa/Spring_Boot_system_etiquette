@@ -27,8 +27,17 @@ public class JwtResponse {
 	  private String email;
 	  private String roles;
 
+	private Boolean valid;
+
+	public Boolean isValid() {
+		return valid;
+	}
+
+	public void setValid(Boolean valid) {
+		this.valid = valid;
+	}
 	  public JwtResponse(String accessToken, Long id, String username, String firstName, String lastName, String poste,
-				String equipe, String email, String roles,String imageUrl) {
+				String equipe, String email, String roles,String imageUrl,Boolean valid) {
 	    this.token = accessToken;
 	    this.id = id;
 	    this.username = username;
@@ -39,6 +48,7 @@ public class JwtResponse {
 	    this.email = email;
 	    this.roles = roles;
 		this.imageUrl=imageUrl;
+		this.valid=valid;
 	  }
 
 	  public String getAccessToken() {

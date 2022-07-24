@@ -52,7 +52,7 @@ public class AuthController {
 		String jwt = jwtUtils.generateJwtToken(authentication);
 		
 		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-		System.out.println(loginRequest.getUsername());
+
 		return ResponseEntity.ok(new JwtResponse(jwt, 
 												 userDetails.getId(), 
 												 userDetails.getUsername(), 
@@ -61,7 +61,7 @@ public class AuthController {
 												 userDetails.getEquipe(),
 												 userDetails.getPoste(),
 												 userDetails.getEmail(), 
-												 userDetails.getRoles(),userDetails.getImageUrl()));
+												 userDetails.getRoles(),userDetails.getImageUrl(),userDetails.isValid()));
 	}
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
@@ -76,13 +76,18 @@ public class AuthController {
 					.badRequest()
 					.body(new MessageResponse("Error: Email is already in use!"));
 		}
-		// Test Role
-System.out.println(signUpRequest.getUsername()+
-		signUpRequest.getFirstName()+
-		signUpRequest.getEquipe()+
-		signUpRequest.getLastName()+
-		signUpRequest.getPoste()+
-		signUpRequest.getEmail()+ signUpRequest.getPassword());
+		String role=signUpRequest.getRole();
+		System.out.println(role);
+		Boolean testvalid=false;
+		if(role.equals("User"))
+		{
+			testvalid=false;
+		}
+		else {
+			testvalid=true;
+		}
+		System.out.println(testvalid);
+
 		// Create new user's account
 		User user = new User(signUpRequest.getUsername(), 
 				signUpRequest.getFirstName(),
@@ -90,7 +95,7 @@ System.out.println(signUpRequest.getUsername()+
 				signUpRequest.getPoste(),
 				signUpRequest.getEquipe(),
 							 signUpRequest.getEmail(),
-							 encoder.encode(signUpRequest.getPassword()),signUpRequest.getRole(),signUpRequest.getImageUrl());
+							 encoder.encode(signUpRequest.getPassword()),signUpRequest.getRole(),signUpRequest.getImageUrl(),testvalid);
 		userRepository.save(user);
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 	}

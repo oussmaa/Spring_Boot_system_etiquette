@@ -46,8 +46,17 @@ public class Scripts {
 
 	private Date date_livraison;
 	private String Etat;
+	private String username;
 
-	public Scripts(String version, Date date_livraison, String etat, String bloc,Boolean tested,Date generated) {
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public Scripts(String version, Date date_livraison, String etat, String bloc, Boolean tested, Date generated,String username) {
 		super();
 		this.version = version;
 		this.date_livraison = date_livraison;
@@ -55,6 +64,7 @@ public class Scripts {
 		this.Bloc=bloc;
 		this.Tested=tested;
 		this.Generated=generated;
+		this.username=username;
 	}
 
 	public Scripts() {

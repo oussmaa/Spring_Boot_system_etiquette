@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 @Entity
 @Table(	name = "users",
@@ -16,7 +17,17 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
+	private Boolean valid;
+
+	public Boolean isValid() {
+		return valid;
+	}
+
+	public void setValid(Boolean valid) {
+		this.valid = valid;
+	}
+
 	@Size(max = 20)
 	private String username;
 	private String firstName;
@@ -50,7 +61,7 @@ public class User {
 	
 
 	public User(String username, String firstName, String lastName, String poste,
-			String equipe,  String email,  String password, String roles,String imageUrl) {
+			String equipe,  String email,  String password, String roles,String imageUrl,boolean valid) {
 		super();
 		this.username = username;
 		this.firstName = firstName;
@@ -61,6 +72,7 @@ public class User {
 		this.password = password;
 		this.roles=roles;
 		this.imageUrl=imageUrl;
+		this.valid=valid;
 	}
 
 

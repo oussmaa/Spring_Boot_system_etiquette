@@ -11,6 +11,15 @@ public class TestQA {
     private String version;
     private Boolean Tested;
     private Date Generated;
+    private String username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public Boolean getTested() {
         return Tested;
@@ -41,7 +50,7 @@ public class TestQA {
     private Date date_livraison;
     private String Etat;
 
-    public TestQA(String version, Date date_livraison, String etat, String bloc,Boolean tested,Date generated) {
+    public TestQA(String version, Date date_livraison, String etat, String bloc,Boolean tested,Date generated,String username) {
         super();
         this.version = version;
         this.date_livraison = date_livraison;
@@ -49,6 +58,7 @@ public class TestQA {
         this.Bloc=bloc;
         this.Tested=tested;
         this.Generated=generated;
+        this.username=username;
     }
 
     public TestQA() {

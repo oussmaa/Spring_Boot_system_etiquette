@@ -14,9 +14,17 @@ public class Historique {
     private String version;
     private Boolean Tested;
     private Date Generated;
-
+    private String username;
     public Boolean getTested() {
         return Tested;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setTested(Boolean tested) {
@@ -44,7 +52,7 @@ public class Historique {
     private Date date_livraison;
     private String Etat;
 
-    public Historique(String version, Date date_livraison, String etat, String bloc,Boolean tested,Date generated) {
+    public Historique(String version, Date date_livraison, String etat, String bloc,Boolean tested,Date generated,String username) {
         super();
         this.version = version;
         this.date_livraison = date_livraison;
@@ -52,6 +60,7 @@ public class Historique {
         this.Bloc=bloc;
         this.Tested=tested;
         this.Generated=generated;
+        this.username=username;
     }
 
     public Historique() {

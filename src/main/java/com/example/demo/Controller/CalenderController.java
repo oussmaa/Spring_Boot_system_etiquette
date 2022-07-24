@@ -1,15 +1,10 @@
 package com.example.demo.Controller;
 
-import com.example.demo.Entity.Event;
-import com.example.demo.Entity.Livraison;
-import com.example.demo.Entity.Notification;
-import com.example.demo.Entity.User;
-import com.example.demo.Repository.EventRepository;
-import com.example.demo.Repository.LivraisonRepository;
-import com.example.demo.Repository.NotificationRepository;
-import com.example.demo.Repository.UserRepository;
+import com.example.demo.Entity.*;
+import com.example.demo.Repository.*;
 import com.example.demo.Services.AccountService;
 import com.example.demo.Services.LivraisonService;
+import com.example.demo.Services.ScriptsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +27,9 @@ import java.util.concurrent.TimeUnit;
 public class CalenderController {
     @Autowired
     private AccountService accountService;
+
+    @Autowired
+    private ScriptsRepository scriptsRepo;
     @Autowired
     EventRepository eventRepositoryent;
     @Autowired
@@ -64,8 +62,18 @@ public class CalenderController {
 
     @PostMapping("/addEvent")
     public Event saveUser(@RequestBody Event event) throws ParseException {
-        eventRepositoryent.save(event);
-        TestEvent(event);
+
+       Event ev= eventRepositoryent.findByTitle(event.getTitle());
+
+       if(ev==null)
+       {
+           eventRepositoryent.save(event);
+           TestEvent(event);
+           Scripts scripts= new Scripts(event.getTitle(),event.getStart(),"En cours","A",true,new Date(),event.getUsername());
+           scriptsRepo.save(scripts);
+       }
+
+
         return event;
     }
 

@@ -108,7 +108,7 @@ public class LivraisonController {
 	@PostMapping("/addLivraisonfini")
 	public Scripts savefini(@RequestBody Scripts scripts){
 		System.out.println(scripts.getEtat());
-		Scripts script=new Scripts(scripts.getVersion(),scripts.getDate_livraison(),scripts.getEtat(),"",false,new Date());
+		Scripts script=new Scripts(scripts.getVersion(),scripts.getDate_livraison(),scripts.getEtat(),"",false,new Date(),scripts.getUsername());
 			return scriptsRepository.save(script);
 
 	}
@@ -118,10 +118,16 @@ public class LivraisonController {
 
 
 		Scripts liv = scriptsRepository.findById(id).orElse(null);
-        TestQA test=new TestQA(liv.getVersion(),liv.getDate_livraison(),liv.getEtat(),liv.getBloc(),liv.getTested(),new Date());
+        TestQA test=new TestQA(liv.getVersion(),liv.getDate_livraison(),liv.getEtat(),liv.getBloc(),liv.getTested(),new Date(),liv.getUsername());
+		TestQA testyesorno=testQARepository.findByVersion(liv.getVersion());
+
 		liv.setEtat(etat);
 		scriptsRepository.save(liv);
-		testQARepository.save(test);
+		if (testyesorno==null)
+		{
+			testQARepository.save(test);
+		}
+
 		return  liv;
 	}
 
@@ -138,14 +144,19 @@ public class LivraisonController {
 		System.out.println(id);
 		System.out.println(etat);
 		TestQA liv = testQARepository.findById(id).orElse(null);
-		Livraison test=new Livraison(liv.getVersion(),liv.getDate_livraison(),liv.getEtat(),liv.getBloc(),liv.getTested(),liv.getGenerated());
+		Livraison test=new Livraison(liv.getVersion(),liv.getDate_livraison(),liv.getEtat(),liv.getBloc(),liv.getTested(),liv.getGenerated(),liv.getUsername());
+		Livraison testyesorno=livraisonRepo.findByVersion(liv.getVersion());
 
 
 		liv.setEtat(etat);
 		liv.setBloc("C");
 
 		testQARepository.save(liv);
-		livraisonRepo.save(test);
+		if (testyesorno==null)
+		{
+			livraisonRepo.save(test);
+ 		}
+
 		return  liv;
 	}
 
@@ -171,9 +182,16 @@ public class LivraisonController {
  			liv.setEtat(etat);
 			 liv.setBloc("D");
 
-			com.example.demo.Entity.Historique test=new com.example.demo.Entity.Historique(liv.getVersion(),liv.getDate_livraison(),liv.getEtat(),liv.getBloc(),liv.getTested(),liv.getGenerated());
+			com.example.demo.Entity.Historique test=new com.example.demo.Entity.Historique(liv.getVersion(),liv.getDate_livraison(),liv.getEtat(),liv.getBloc(),liv.getTested(),liv.getGenerated(),liv.getUsername());
+			com.example.demo.Entity.Historique testyesorno=historique.findByVersion(liv.getVersion());
+			if (testyesorno==null)
+			{
+				historique.save(test);
+			}
 
-			historique.save(test);
+
+
+
 			livraisonRepo.save(liv);
 
 			return  liv;

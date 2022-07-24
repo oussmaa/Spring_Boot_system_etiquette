@@ -1,8 +1,12 @@
 package com.example.demo.Controller;
 
 import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 
+import com.example.demo.Entity.Event;
+import com.example.demo.Entity.Problem;
+import com.example.demo.Repository.ProblemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +23,8 @@ public class AccountController {
 	 private AccountService accountService;
 	@Autowired
 	private UserRepository userRepo;
-
+	@Autowired
+	private ProblemRepository problemRepository;
 
 	    public AccountController(AccountService accountService) {
 	        this.accountService = accountService;
@@ -41,15 +46,13 @@ public class AccountController {
 	    }
 
 	    @PutMapping("/updateUser/{id}")
-	    public User updateUser(@RequestBody User use,@PathVariable("id") Long id){
+	    public User updateUser(@RequestBody Boolean use,@PathVariable("id") Long id){
 			System.out.println(id);
 			User user = userRepo.findById(id).orElse(null);
-			user.setFirstName(use.getFirstName());
-			user.setEquipe(use.getEquipe());
-			user.setEmail(use.getEmail());
-			user.setPoste(use.getPoste());
-			user.setLastName(use.getLastName());
-			System.out.println(use.getEquipe());
+			if(use.equals(false))
+			{user.setValid(true);}
+			else
+			{user.setValid(false);}
 			userRepo.save(user);
 			return user;
 	    }
@@ -63,12 +66,25 @@ public class AccountController {
 	    public User findUserByFirstName(@PathVariable String firstname){
 	        return accountService.getUserByFirstName(firstname);
 	    }
+	@GetMapping("/GetAllProblem")
+	public List<Problem> GetAlleEvent(){
+
+		return problemRepository.findAll();
+
+	}
+
+			@PostMapping("/addproblem")
+			public Problem saveproblem(@RequestBody Problem problem){
+
+			 Problem problem1=new Problem(problem.getText(),problem.getObject(),problem.getUsernameuser(),problem.getVersion(),new Date());
+
+			return problemRepository.save(problem1);
 
 
+ 	      }
 
-	  
 
-	    @GetMapping(path = "/profile")
+		@GetMapping(path = "/profile")
 	    public User profile(Principal principal){
 	        return accountService.loadUserByUsername(principal.getName());
 	    }

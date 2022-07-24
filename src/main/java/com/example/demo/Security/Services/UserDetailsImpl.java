@@ -11,11 +11,22 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.example.demo.Entity.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.validation.constraints.Size;
+
 public class UserDetailsImpl implements UserDetails {
 	private static final long serialVersionUID = 1L;
 	private Long id;
 	private String imageUrl;
+	@Size(max = 20)
+	private Boolean valid;
 
+	public Boolean isValid() {
+		return valid;
+	}
+
+	public void setValid(Boolean valid) {
+		this.valid = valid;
+	}
 	public String getImageUrl() {
 		return imageUrl;
 	}
@@ -35,7 +46,7 @@ public class UserDetailsImpl implements UserDetails {
 	private Collection<? extends GrantedAuthority> authorities;
 	public UserDetailsImpl(Long id, String username, String firstName, String lastName, String poste,
 			String equipe, String email, String password,
-			String roles,String imageUrl) {
+			String roles,String imageUrl,Boolean valid) {
 		this.id = id;
 		this.username = username;
 		this.firstName = firstName;
@@ -46,6 +57,7 @@ public class UserDetailsImpl implements UserDetails {
 		this.password = password;
 		this.roles = roles;
 		this.imageUrl=imageUrl;
+		this.valid=valid;
 	}
 	public static UserDetailsImpl build(User user) {
 
@@ -58,7 +70,7 @@ public class UserDetailsImpl implements UserDetails {
 				user.getPoste(),
 				user.getEmail(),
 				user.getPassword(), 
-				user.getRoles(),user.getImageUrl());
+				user.getRoles(),user.getImageUrl(),user.isValid());
 	}
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

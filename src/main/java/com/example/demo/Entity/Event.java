@@ -15,13 +15,22 @@ public class Event {
     public  Date end;
     private String title;
     private String color;
-
-    public Event(String title ,Date start, Date end, String color) {
+    private String username;
+    public Event(String title ,Date start, Date end, String color, String username) {
 
         this.start = start;
         this.end = end;
         this.color = color;
         this.title=title;
+        this.username=username;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Event() {

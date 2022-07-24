@@ -11,7 +11,18 @@ public class SignupRequest {
 	  @Size(min = 3, max = 20)
 	  private String username;
 	  private String firstName;
-	    @Size(max = 20)
+
+	private Boolean valid;
+
+	public Boolean isValid() {
+		return valid;
+	}
+
+	public void setValid(Boolean valid) {
+		this.valid = valid;
+	}
+
+	@Size(max = 20)
 	    private String lastName;
 	    private String poste;
 	    private String equipe;
