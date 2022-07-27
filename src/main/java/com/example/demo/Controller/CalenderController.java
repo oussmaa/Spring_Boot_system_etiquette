@@ -2,6 +2,7 @@ package com.example.demo.Controller;
 
 import com.example.demo.Entity.*;
 import com.example.demo.Repository.*;
+import com.example.demo.Repository.Historique;
 import com.example.demo.Services.AccountService;
 import com.example.demo.Services.LivraisonService;
 import com.example.demo.Services.ScriptsService;
@@ -15,10 +16,7 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -33,6 +31,8 @@ public class CalenderController {
     @Autowired
     EventRepository eventRepositoryent;
     @Autowired
+    Historique historique;
+    @Autowired
     NotificationRepository notificationRepository;
     @Autowired
     LivraisonRepository livraisonRepository;
@@ -44,6 +44,55 @@ public class CalenderController {
         return eventRepositoryent.findAll();
 
     }
+    @GetMapping("/GetAllTiketTerminer")
+    public  List<Integer>  GetAllTiketTerminer(){
+        List<Livraison> list1= new ArrayList<>();
+        List<Livraison> list2= new ArrayList<>();
+        List<Livraison> list3= new ArrayList<>();
+
+
+    List<Livraison> list=livraisonRepository.findAll();
+        for (int i=0;i<list.size();i++)
+        {
+            if(list.get(i).getEtat().equals("Terminer"))
+        {
+            list1.add(list.get(i));
+        }
+         else   if(list.get(i).getEtat().equals("En cours"))
+            {
+                list2.add(list.get(i));
+            }
+          else
+            {
+                list3.add(list.get(i));
+            }
+
+        }
+
+
+        List<Integer> listreturn=new ArrayList<>();
+        listreturn.add(list1.size());
+        listreturn.add(list2.size());
+        listreturn.add(list3.size());
+
+
+        return  listreturn;
+
+    }
+    @GetMapping("/findEventByusername/{Username}")
+    public List<Integer> findEventByusername(@PathVariable String Username){
+        List<Integer> Listretern=new ArrayList<>();
+        List<User> list1=userRepository.findAll();
+            for (int i=0;i<list1.size();i++)
+            {
+                List<Scripts> list=scriptsRepo.findByUsername(list1.get(i).getUsername());
+                Listretern.add(list.size());
+                System.out.println(list1.get(i).getUsername()+list.size());
+
+            }
+         return Listretern;
+    }
+
     @DeleteMapping("/deleteUser/{id}")
     public ResponseEntity<HttpStatus> deleteUser(@PathVariable Long id){
         try {

@@ -1,6 +1,7 @@
 package com.example.demo.Controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -66,6 +67,22 @@ public class AccountController {
 	    public User findUserByFirstName(@PathVariable String firstname){
 	        return accountService.getUserByFirstName(firstname);
 	    }
+
+
+	@GetMapping(path = "/GetUserAndAdmin")
+	// @PostAuthorize("hasAuthority('ADMIN')")
+	public List<Integer> GetSizeUserAndADdmin(){
+			List<User> users = userRepo.findByRoles("User");
+		    List<User> admins = userRepo.findByRoles("Admin");
+		   List<Integer> list=new ArrayList<>();
+		   System.out.println(users.size());
+		System.out.println(admins.size());
+
+		list.add(users.size());
+		list.add(admins.size());
+		return  list;
+		}
+
 	@GetMapping("/GetAllProblem")
 	public List<Problem> GetAlleEvent(){
 
