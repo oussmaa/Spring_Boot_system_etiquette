@@ -105,20 +105,14 @@ public class LivraisonController {
 
 			return List;
 		}
-	@PostMapping("/addLivraisonfini")
-	public Scripts savefini(@RequestBody Scripts scripts){
-		System.out.println(scripts.getEtat());
-		Scripts script=new Scripts(scripts.getVersion(),scripts.getDate_livraison(),scripts.getEtat(),"",false,new Date(),scripts.getUsername());
-			return scriptsRepository.save(script);
 
-	}
 
 	@PutMapping("/updateLivraisonfini/{id}")
 	public Scripts updatefini(@RequestBody String etat, @PathVariable("id") Long id){
 
 
 		Scripts liv = scriptsRepository.findById(id).orElse(null);
-        TestQA test=new TestQA(liv.getVersion(),liv.getDate_livraison(),liv.getEtat(),liv.getBloc(),liv.getTested(),new Date(),liv.getUsername());
+        TestQA test=new TestQA(liv.getVersion(),liv.getDate_livraison(),liv.getEtat(),liv.getBloc(),liv.getTested(),new Date(),liv.getUsername(),new Date());
 		TestQA testyesorno=testQARepository.findByVersion(liv.getVersion());
 
 		liv.setEtat(etat);
@@ -144,7 +138,7 @@ public class LivraisonController {
 		System.out.println(id);
 		System.out.println(etat);
 		TestQA liv = testQARepository.findById(id).orElse(null);
-		Livraison test=new Livraison(liv.getVersion(),liv.getDate_livraison(),liv.getEtat(),liv.getBloc(),liv.getTested(),liv.getGenerated(),liv.getUsername());
+		Livraison test=new Livraison(liv.getVersion(),liv.getDate_livraison(),liv.getEtat(),liv.getBloc(),liv.getTested(),liv.getGenerated(),liv.getUsername(),new Date());
 		Livraison testyesorno=livraisonRepo.findByVersion(liv.getVersion());
 
 

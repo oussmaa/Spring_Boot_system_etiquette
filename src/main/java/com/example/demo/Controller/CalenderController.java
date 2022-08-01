@@ -118,7 +118,7 @@ public class CalenderController {
        {
            eventRepositoryent.save(event);
            TestEvent(event);
-           Scripts scripts= new Scripts(event.getTitle(),event.getStart(),"En cours","A",true,new Date(),event.getUsername());
+           Scripts scripts= new Scripts(event.getTitle(),event.getStart(),"En cours","A",true,new Date(),event.getUsername(),event.getGenrate());
            scriptsRepo.save(scripts);
        }
 

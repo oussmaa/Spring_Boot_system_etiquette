@@ -55,8 +55,17 @@ public class Livraison {
 
 	private Date date_livraison;
 	private String Etat;
+	private Date date_Genration;
 
-	public Livraison(String version, Date date_livraison, String etat, String bloc,Boolean tested,Date generated,String username) {
+	public Date getDate_Genration() {
+		return date_Genration;
+	}
+
+	public void setDate_Genration(Date date_Genration) {
+		this.date_Genration = date_Genration;
+	}
+
+	public Livraison(String version, Date date_livraison, String etat, String bloc,Boolean tested,Date generated,String username,Date date_Genration) {
 		super();
 		this.version = version;
 		this.date_livraison = date_livraison;
@@ -65,6 +74,7 @@ public class Livraison {
 		this.Tested=tested;
 		this.Generated=generated;
 		this.username=username;
+		this.date_Genration=date_Genration;
 	}
 
 	public Livraison() {
