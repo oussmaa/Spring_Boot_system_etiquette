@@ -17,6 +17,24 @@ public class Scripts {
 	private String version;
 	private Boolean Tested;
 	private Date Generated;
+	private Date dateDebutScript;
+	private Date datefinScript;
+
+	public Date getDateDebutScript() {
+		return dateDebutScript;
+	}
+
+	public void setDateDebutScript(Date dateDebutScript) {
+		this.dateDebutScript = dateDebutScript;
+	}
+
+	public Date getDatefinScript() {
+		return datefinScript;
+	}
+
+	public void setDatefinScript(Date datefinScript) {
+		this.datefinScript = datefinScript;
+	}
 
 	public Boolean getTested() {
 		return Tested;
@@ -66,7 +84,7 @@ public class Scripts {
 		this.username = username;
 	}
 
-	public Scripts(String version, Date date_livraison, String etat, String bloc, Boolean tested, Date generated,String username,Date date_Genration) {
+	public Scripts(String version, Date date_livraison, String etat, String bloc, Boolean tested, Date generated,String username,Date date_Genration,Date dateDebutScript,Date datefinScript) {
 		super();
 		this.version = version;
 		this.date_livraison = date_livraison;
@@ -76,6 +94,8 @@ public class Scripts {
 		this.Generated=generated;
 		this.username=username;
 		this.date_Genration=date_Genration;
+		this.datefinScript=datefinScript;
+		this.dateDebutScript=dateDebutScript;
 	}
 
 	public Scripts() {

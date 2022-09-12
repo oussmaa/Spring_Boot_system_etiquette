@@ -39,8 +39,8 @@ public class RestControllerEmail {
 
         SimpleMailMessage message = new SimpleMailMessage();
 
-        message.setFrom("chaouachimariem67@gmail.com");
-        message.setTo("gharianioussama24@gmail.com");
+        message.setFrom("gharianioussama24@gmail.com");
+        message.setTo("oussama.ghariani@l-mobile.com");
         message.setSubject(version);
         message.setText("Salut tout le maonde,"
                 + "On a livrer APSYS-406_pr3 V4.06-30.32 le 30 juin");

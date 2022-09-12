@@ -38,6 +38,25 @@ public class TestQA {
     }
 
     public String Bloc;
+    private Date dateDebutScript;
+
+    public Date getDateDebutScript() {
+        return dateDebutScript;
+    }
+
+    public void setDateDebutScript(Date dateDebutScript) {
+        this.dateDebutScript = dateDebutScript;
+    }
+
+    public Date getDatefinScript() {
+        return datefinScript;
+    }
+
+    public void setDatefinScript(Date datefinScript) {
+        this.datefinScript = datefinScript;
+    }
+
+    private Date datefinScript;
 
     public String getBloc() {
         return Bloc;
@@ -59,7 +78,7 @@ public class TestQA {
         this.date_Genration = date_Genration;
     }
 
-    public TestQA(String version, Date date_livraison, String etat, String bloc,Boolean tested,Date generated,String username,Date date_Genration) {
+    public TestQA(String version, Date date_livraison, String etat, String bloc,Boolean tested,Date generated,String username,Date date_Genration,Date dateDebutScript,Date datefinScript) {
         super();
         this.version = version;
         this.date_livraison = date_livraison;
@@ -69,6 +88,8 @@ public class TestQA {
         this.Generated=generated;
         this.username=username;
         this.date_Genration=date_Genration;
+        this.datefinScript=datefinScript;
+        this.dateDebutScript=dateDebutScript;
     }
 
     public TestQA() {

@@ -51,8 +51,26 @@ public class Historique {
 
     private Date date_livraison;
     private String Etat;
+    private Date dateDebutScript;
+    private Date datefinScript;
 
-    public Historique(String version, Date date_livraison, String etat, String bloc,Boolean tested,Date generated,String username) {
+    public Date getDateDebutScript() {
+        return dateDebutScript;
+    }
+
+    public void setDateDebutScript(Date dateDebutScript) {
+        this.dateDebutScript = dateDebutScript;
+    }
+
+    public Date getDatefinScript() {
+        return datefinScript;
+    }
+
+    public void setDatefinScript(Date datefinScript) {
+        this.datefinScript = datefinScript;
+    }
+
+    public Historique(String version, Date date_livraison, String etat, String bloc, Boolean tested, Date generated, String username, Date dateDebutScript, Date datefinScript) {
         super();
         this.version = version;
         this.date_livraison = date_livraison;
@@ -61,6 +79,8 @@ public class Historique {
         this.Tested=tested;
         this.Generated=generated;
         this.username=username;
+        this.datefinScript=datefinScript;
+        this.dateDebutScript=dateDebutScript;
     }
 
     public Historique() {

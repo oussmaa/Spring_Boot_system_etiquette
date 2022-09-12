@@ -17,6 +17,24 @@ public class Event {
     private String title;
     private String color;
 
+    public Date getDateDebutScript() {
+        return dateDebutScript;
+    }
+
+    public void setDateDebutScript(Date dateDebutScript) {
+        this.dateDebutScript = dateDebutScript;
+    }
+
+    public Date getDatefinScript() {
+        return datefinScript;
+    }
+
+    public void setDatefinScript(Date datefinScript) {
+        this.datefinScript = datefinScript;
+    }
+
+    private Date dateDebutScript;
+    private Date datefinScript;
     public Date getGenrate() {
         return Genrate;
     }
@@ -26,7 +44,7 @@ public class Event {
     }
 
     private String username;
-    public Event(String title ,Date start, Date end, String color, String username,Date genrate) {
+    public Event(String title ,Date start, Date end, String color, String username,Date dateDebutScript,Date datefinScript,Date genrate) {
 
         this.start = start;
         this.end = end;
@@ -34,6 +52,8 @@ public class Event {
         this.title=title;
         this.username=username;
         this.Genrate=genrate;
+        this.datefinScript=datefinScript;
+        this.dateDebutScript=dateDebutScript;
     }
 
     public String getUsername() {

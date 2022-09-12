@@ -64,8 +64,26 @@ public class Livraison {
 	public void setDate_Genration(Date date_Genration) {
 		this.date_Genration = date_Genration;
 	}
+	private Date dateDebutScript;
+	private Date datefinScript;
 
-	public Livraison(String version, Date date_livraison, String etat, String bloc,Boolean tested,Date generated,String username,Date date_Genration) {
+	public Date getDateDebutScript() {
+		return dateDebutScript;
+	}
+
+	public void setDateDebutScript(Date dateDebutScript) {
+		this.dateDebutScript = dateDebutScript;
+	}
+
+	public Date getDatefinScript() {
+		return datefinScript;
+	}
+
+	public void setDatefinScript(Date datefinScript) {
+		this.datefinScript = datefinScript;
+	}
+
+	public Livraison(String version, Date date_livraison, String etat, String bloc, Boolean tested, Date generated, String username, Date date_Genration,Date dateDebutScript,Date datefinScript) {
 		super();
 		this.version = version;
 		this.date_livraison = date_livraison;
@@ -75,6 +93,8 @@ public class Livraison {
 		this.Generated=generated;
 		this.username=username;
 		this.date_Genration=date_Genration;
+		this.dateDebutScript=dateDebutScript;
+		this.datefinScript=datefinScript;
 	}
 
 	public Livraison() {

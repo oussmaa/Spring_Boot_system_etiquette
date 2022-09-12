@@ -112,7 +112,7 @@ public class LivraisonController {
 
 
 		Scripts liv = scriptsRepository.findById(id).orElse(null);
-        TestQA test=new TestQA(liv.getVersion(),liv.getDate_livraison(),liv.getEtat(),liv.getBloc(),liv.getTested(),new Date(),liv.getUsername(),new Date());
+        TestQA test=new TestQA(liv.getVersion(),liv.getDate_livraison(),liv.getEtat(),liv.getBloc(),liv.getTested(),new Date(),liv.getUsername(),new Date(),new Date(),liv.getDatefinScript());
 		TestQA testyesorno=testQARepository.findByVersion(liv.getVersion());
 
 		liv.setEtat(etat);
@@ -138,7 +138,7 @@ public class LivraisonController {
 		System.out.println(id);
 		System.out.println(etat);
 		TestQA liv = testQARepository.findById(id).orElse(null);
-		Livraison test=new Livraison(liv.getVersion(),liv.getDate_livraison(),liv.getEtat(),liv.getBloc(),liv.getTested(),liv.getGenerated(),liv.getUsername(),new Date());
+		Livraison test=new Livraison(liv.getVersion(),liv.getDate_livraison(),liv.getEtat(),liv.getBloc(),liv.getTested(),liv.getGenerated(),liv.getUsername(),new Date(),new Date(),liv.getDatefinScript());
 		Livraison testyesorno=livraisonRepo.findByVersion(liv.getVersion());
 
 
@@ -176,7 +176,7 @@ public class LivraisonController {
  			liv.setEtat(etat);
 			 liv.setBloc("D");
 
-			com.example.demo.Entity.Historique test=new com.example.demo.Entity.Historique(liv.getVersion(),liv.getDate_livraison(),liv.getEtat(),liv.getBloc(),liv.getTested(),liv.getGenerated(),liv.getUsername());
+			com.example.demo.Entity.Historique test=new com.example.demo.Entity.Historique(liv.getVersion(),liv.getDate_livraison(),liv.getEtat(),liv.getBloc(),liv.getTested(),liv.getGenerated(),liv.getUsername(),liv.getDateDebutScript(),liv.getDatefinScript());
 			com.example.demo.Entity.Historique testyesorno=historique.findByVersion(liv.getVersion());
 			if (testyesorno==null)
 			{
